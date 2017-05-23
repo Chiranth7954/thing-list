@@ -13,6 +13,8 @@ class App extends Component {
     }
   }
 
+  // state changing methods need to be here, and passed as props to children
+
   render() {
     return (
       <div className="App">
