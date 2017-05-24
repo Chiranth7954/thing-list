@@ -5,6 +5,10 @@ import './Thing.css'
 import RemoveThing from './RemoveThing'
 
 class Thing extends Component {
+  componentDidMount() {
+    this.nameInput.htmlEl.focus()
+  }
+
   updateName = (ev) => {
     const { thing, saveThing} = this.props
     thing.name = ev.target.value
@@ -22,6 +26,7 @@ class Thing extends Component {
             className="name"
             html={thing.name}
             onChange={this.updateName}
+            ref={input => this.nameInput = input}
           />
           <RemoveThing
             thing={thing}
