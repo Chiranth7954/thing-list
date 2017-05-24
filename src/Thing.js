@@ -15,6 +15,13 @@ class Thing extends Component {
     saveThing(thing)
   }
 
+  blurOnEnter = (ev) => {
+    if (ev.key === 'Enter') {
+      ev.preventDefault()
+      ev.target.blur()
+    }
+  }
+
   render() {
     const { thing, removeThing } = this.props
 
@@ -26,6 +33,7 @@ class Thing extends Component {
             className="name"
             html={thing.name}
             onChange={this.updateName}
+            onKeyPress={this.blurOnEnter}
             ref={input => this.nameInput = input}
           />
           <RemoveThing
