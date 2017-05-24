@@ -15,7 +15,6 @@ const ThingList = (props) => {
           .keys(props.things)
           .sort(sortThings)
           .map(thingId => <Thing thing={props.things[thingId]} key={thingId} />)
-
       }
     </ul>
   )
