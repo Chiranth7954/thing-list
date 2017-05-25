@@ -11,7 +11,11 @@ class Thing extends Component {
     }
   }
 
-  
+  updateCompleted = (ev) => {
+    const { thing, saveThing } = this.props
+    thing.completed = ev.target.checked
+    saveThing(thing)
+  }
 
   updateName = (ev) => {
     const { thing, saveThing } = this.props
