@@ -15,17 +15,30 @@ class App extends Component {
   }
 
   componentWillMount() {
-    base.syncState(
-      'things',
-      {
-        context: this,
-        state: 'things'
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          this.authHandler({ user })
+        }
       }
     )
   }
 
   authHandler = (authData) => {
-    this.setState({ uid: authData.user.uid })
+    this.setState(
+      { uid: authData.user.uid },
+      this.syncThings
+    )
+  }
+
+  syncThings = () => {
+    base.syncState(
+      'things',
+      {
+        context: this,
+        state: 'things',
+      }
+    )
   }
 
   renderThing() {
