@@ -4,9 +4,7 @@ import './SignOut.css'
 
 const SignOut = () => {
   return (
-    <button
-      className="SignOut"
-    >
+    <button className="SignOut">
       Sign Out
     </button>
   )

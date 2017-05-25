@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import './App.css'
 import Header from './Header'
+import SignIn from './SignIn'
 import SignOut from './SignOut'
 import AddThing from './AddThing'
 import ThingList from './ThingList'
@@ -59,6 +60,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <SignIn />
         <SignOut />
         <AddThing addThing={this.addThing} />
         <ThingList
