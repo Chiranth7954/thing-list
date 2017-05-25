@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import './App.css'
 import Header from './Header'
+import SignOut from './SignOut'
 import AddThing from './AddThing'
 import ThingList from './ThingList'
 import base from './base'
@@ -58,6 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <SignOut />
         <AddThing addThing={this.addThing} />
         <ThingList
           things={this.state.things}
