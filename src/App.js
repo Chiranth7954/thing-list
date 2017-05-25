@@ -6,9 +6,14 @@ import SignIn from './SignIn'
 import SignOut from './SignOut'
 import AddThing from './AddThing'
 import ThingList from './ThingList'
-import base from './base'
+import base, { auth } from './base'
 
 class App extends Component {
+  state = {
+    things: {},
+    uid: null,
+  }
+
   componentWillMount() {
     base.syncState(
       'things',
@@ -19,8 +24,8 @@ class App extends Component {
     )
   }
 
-  state = {
-    things: {},
+  authHandler = (authData) => {
+    this.setState({ uid: authData.user.uid })
   }
 
   renderThing() {
@@ -52,7 +57,13 @@ class App extends Component {
   }
 
   signedIn = () => {
-    return false
+    return this.state.uid
+  }
+
+  signOut = () => {
+    auth
+      .signOut()
+      .then(() => this.setState({ uid: null }))
   }
 
   renderMain = () => {
@@ -63,7 +74,7 @@ class App extends Component {
 
     return (
       <div>
-      <SignOut />
+      <SignOut signOut={this.signOut} />
       <AddThing addThing={this.addThing} />
       <ThingList
         things={this.state.things}
@@ -77,7 +88,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.signedIn() ? this.renderMain() : <SignIn />}
+        {this.signedIn() ? this.renderMain() : <SignIn authHandler={this.authHandler} />}
       </div>
     )
   }
